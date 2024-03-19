@@ -37,12 +37,22 @@ function App() {
     });
     console.log(userPlaces);
   }
+
+  function handleRemovePlace() {
+    setUserPlaces((prevPickedPlaces) =>
+      prevPickedPlaces.filter((place) => place.id !== selectedPlace.current.id),
+    );
+    setModalIsOpen(false);
+  }
   return (
     <>
-      <Modal>
+      <Modal open={modalIsOpen}>
         {modalIsOpen && (
           <div>
-            <DeleteConfirmation onCancel={handleStopRemovePlace} />
+            <DeleteConfirmation
+              onCancel={handleStopRemovePlace}
+              onConfirm={handleRemovePlace}
+            />
           </div>
         )}
       </Modal>

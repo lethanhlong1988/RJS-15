@@ -7,7 +7,9 @@ export default function DeleteConfirmation({ onCancel, onConfirm }) {
         <button className="button-text" onClick={onCancel}>
           No
         </button>
-        <button className="button">Yes</button>
+        <button className="button" onClick={onConfirm}>
+          Yes
+        </button>
       </div>
     </div>
   );
