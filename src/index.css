@@ -141,7 +141,7 @@ header p {
 
 #delete-confirmation h2 {
   font-family: "Raleway", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 0;
   padding: 0;
   color: #5d0909;
@@ -149,8 +149,8 @@ header p {
 
 #delete-confirmation p {
   margin: 0 auto;
-  font-size: 1.15rem;
-  max-width: 38ch;
+  font-size: 0.75rem;
+  max-width: 25ch;
   color: #804242;
 }
 
