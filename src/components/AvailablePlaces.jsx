@@ -2,25 +2,27 @@ import { useState, useEffect } from "react";
 
 import Places from "./Places";
 
-export default function AvailablePlaces() {
+export default function AvailablePlaces({onSelectPlace}) {
   const [availablePlaces, setAvailablePlaces] = useState([]);
 
-  useEffect(() => {}, []);
-  fetch("http://localhost:3000/places")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => console.log(data))
-    .catch((error) => {
-      console.error("Error!!!", error);
-    });
-  console.log(response);
+  useEffect(() => {
+    fetch("http://localhost:3000/places")
+      .then((response) => {
+        return response.json();
+      })
+      .then((resdata) => {
+        setAvailablePlaces(resdata.places);
+        console.log(availablePlaces);
+      });
+  }, []);
+
   return (
     <div>
       <Places
         title="Available Places"
         places={availablePlaces}
         fallbackText="No places available"
+        onSelectPlace={onSelectPlace}
       />
     </div>
   );

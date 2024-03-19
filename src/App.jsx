@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Modal from "./components/Modal";
 import Places from "./components/Places";
 import AvailablePlaces from "./components/AvailablePlaces";
@@ -5,6 +7,13 @@ import AvailablePlaces from "./components/AvailablePlaces";
 import logoImg from "./assets/logo.png";
 
 function App() {
+  const [userPlaces, setUserPlaces] = useState([]);
+  function handleSelectPlace(selectedPlace) {
+    setUserPlaces((prevPickedPlace) => {
+      return [selectedPlace, ...prevPickedPlace];
+    });
+    console.log(userPlaces);
+  }
   return (
     <>
       <Modal>
@@ -23,7 +32,7 @@ function App() {
           places={[]}
           fallbackText="Select the places you would like to visit below."
         />
-        <AvailablePlaces />
+        <AvailablePlaces onSelectPlace={handleSelectPlace} />
       </main>
     </>
   );

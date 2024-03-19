@@ -76,7 +76,7 @@ header p {
 .places {
   max-width: 80rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
   grid-gap: 2rem;
   margin: 2rem auto;
   padding: 0;
@@ -124,7 +124,7 @@ header p {
 .place-item h3 {
   font-family: "Raleway", sans-serif;
   font-weight: normal;
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   position: absolute;
   bottom: 0;
   right: 1rem;
