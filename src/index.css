@@ -219,6 +219,10 @@ header p {
   color: #3e0505;
 }
 
+.error h2 {
+  font-size: 0.75rem;
+}
+
 .modal .error {
   margin: auto;
 }
