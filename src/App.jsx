@@ -7,8 +7,10 @@ import DeleteConfirmation from "./components/DeleteConfirmation";
 import Error from "./components/Error";
 
 import logoImg from "./assets/logo.png";
+import { updateUserPlaces } from "./http.js";
 
 function App() {
+  console.log("App");
   const selectedPlace = useRef();
 
   const [userPlaces, setUserPlaces] = useState([]);
@@ -25,7 +27,27 @@ function App() {
     console.log("stop!!!");
   }
 
-  function handleSelectPlace(selectedPlace) {
+  // async function handleSelectPlace(selectedPlace) {
+  //   setUserPlaces((prevPickedPlaces) => {
+  //     if (!prevPickedPlaces) {
+  //       prevPickedPlaces = [];
+  //     }
+  //     if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
+  //       return prevPickedPlaces;
+  //     }
+  //     return [selectedPlace, ...prevPickedPlaces];
+  //   });
+  //   try {
+  //     await updateUserPlaces([selectedPlace, ...userPlaces]);
+  //   } catch (error) {
+  //     setUserPlaces(userPlaces);
+  //     setErrorUpdatingPlaces({
+  //       message: error.message || 'Failed to update places.',
+  //     })
+  //   }
+  // }
+
+  async function handleSelectPlace(selectedPlace) {
     setUserPlaces((prevPickedPlaces) => {
       if (!prevPickedPlaces) {
         prevPickedPlaces = [];
@@ -35,6 +57,14 @@ function App() {
       }
       return [selectedPlace, ...prevPickedPlaces];
     });
+
+    try {
+      await updateUserPlaces([selectedPlace, ...userPlaces]);
+    } catch (error) {
+      setErrorUpdatingPlaces({
+        message: error.message || "Failed to update places.",
+      });
+    }
   }
 
   const handleRemovePlace = useCallback(async function handleRemovePlace() {
