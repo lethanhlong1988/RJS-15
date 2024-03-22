@@ -18,7 +18,6 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function handleStartRemovePlace(place) {
-    console.log(place);
     selectedPlace.current = place;
   }
 
