@@ -27,27 +27,9 @@ function App() {
     console.log("stop!!!");
   }
 
-  // async function handleSelectPlace(selectedPlace) {
-  //   setUserPlaces((prevPickedPlaces) => {
-  //     if (!prevPickedPlaces) {
-  //       prevPickedPlaces = [];
-  //     }
-  //     if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
-  //       return prevPickedPlaces;
-  //     }
-  //     return [selectedPlace, ...prevPickedPlaces];
-  //   });
-  //   try {
-  //     await updateUserPlaces([selectedPlace, ...userPlaces]);
-  //   } catch (error) {
-  //     setUserPlaces(userPlaces);
-  //     setErrorUpdatingPlaces({
-  //       message: error.message || 'Failed to update places.',
-  //     })
-  //   }
-  // }
-
   async function handleSelectPlace(selectedPlace) {
+    // await updateUserPlaces([selectedPlace, ...userPlaces]);
+
     setUserPlaces((prevPickedPlaces) => {
       if (!prevPickedPlaces) {
         prevPickedPlaces = [];
@@ -57,10 +39,10 @@ function App() {
       }
       return [selectedPlace, ...prevPickedPlaces];
     });
-
     try {
       await updateUserPlaces([selectedPlace, ...userPlaces]);
     } catch (error) {
+      setUserPlaces(userPlaces);
       setErrorUpdatingPlaces({
         message: error.message || "Failed to update places.",
       });

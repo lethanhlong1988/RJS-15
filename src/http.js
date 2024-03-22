@@ -16,9 +16,11 @@ export async function updateUserPlaces(places) {
       "Content-type": "application/json",
     },
   });
+
+  const resData = await response.json();
+
   if (!response.ok) {
     throw new Error("Failed to update user data!");
   }
-  const resData = await response.json();
   return resData.message;
 }
