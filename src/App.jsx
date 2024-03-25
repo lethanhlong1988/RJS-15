@@ -20,11 +20,13 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function handleStartRemovePlace(place) {
+    setModalIsOpen(true);
     selectedPlace.current = place;
   }
 
   function handleStopRemovePlace() {
     console.log("stop!!!");
+    setModalIsOpen(false);
   }
 
   async function handleSelectPlace(selectedPlace) {
@@ -39,14 +41,16 @@ function App() {
       }
       return [selectedPlace, ...prevPickedPlaces];
     });
-    try {
-      await updateUserPlaces([selectedPlace, ...userPlaces]);
-    } catch (error) {
-      setUserPlaces(userPlaces);
-      setErrorUpdatingPlaces({
-        message: error.message || "Failed to update places.",
-      });
-    }
+    console.log(userPlaces);
+
+    // try {
+    //   await updateUserPlaces(selectedPlace, ...userPlaces);
+    // } catch (error) {
+    //   setUserPlaces(userPlaces);
+    //   setErrorUpdatingPlaces({
+    //     message: error.message || "Failed to update places.",
+    //   });
+    // }
   }
 
   const handleRemovePlace = useCallback(async function handleRemovePlace() {
@@ -56,8 +60,22 @@ function App() {
     setModalIsOpen(false);
   }, []);
 
+  function handleError() {
+    setErrorUpdatingPlaces(null);
+  }
+
   return (
     <>
+      <Modal open={errorUpdatingPlaces} onClose={handleError}>
+        {errorUpdatingPlaces && (
+          <Error
+            title="An error occured!"
+            message="Failed to update places.!"
+            onConfirm={handleError}
+          />
+        )}
+      </Modal>
+
       <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
         {modalIsOpen && (
           <div>
