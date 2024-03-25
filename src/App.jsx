@@ -57,6 +57,18 @@ function App() {
     setUserPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current.id),
     );
+
+    // try {
+    //   await updateUserPlaces(
+    //     userPlaces.filter((place) => place.id !== selectedPlace.current.id),
+    //   );
+    // } catch (error) {
+    //   setUserPlaces(userPlaces);
+    //   setErrorUpdatingPlaces({
+    //     message: error.message || "Failed to delete place.",
+    //   });
+    // }
+
     setModalIsOpen(false);
   }, []);
 
