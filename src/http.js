@@ -7,8 +7,17 @@ export async function fetchAvailablePlaces() {
   return resData.places;
 }
 
+export async function fetchUserPlaces() {
+  const response = await fetch("http://localhost:3000/user-places");
+  if (!response.ok) {
+    throw new Error("Failed to fetch user places!");
+  }
+  const resData = await response.json();
+  console.log(resData.places);
+  return resData.places;
+}
+
 export async function updateUserPlaces(places) {
-  console.log("fetch test!");
   const response = await fetch("http://localhost:3000/user-places", {
     method: "PUT",
     body: JSON.stringify({ places }),
